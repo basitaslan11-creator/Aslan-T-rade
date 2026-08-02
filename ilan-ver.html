@@ -1,1 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İlan Ver | ASLAN TRADE</title>
 
+    <style>
+        body{
+            font-family:Arial,sans-serif;
+            background:#f3f4f6;
+            margin:0;
+        }
+
+        header{
+            background:#111827;
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+
+        .form{
+            max-width:600px;
+            margin:40px auto;
+            background:white;
+            padding:25px;
+            border-radius:10px;
+            box-shadow:0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        input, textarea, select{
+            width:100%;
+            padding:12px;
+            margin-top:10px;
+            margin-bottom:20px;
+            border:1px solid #ccc;
+            border-radius:6px;
+            box-sizing:border-box;
+        }
+
+        button{
+            width:100%;
+            padding:14px;
+            background:#2563eb;
+            color:white;
+            border:none;
+            border-radius:6px;
+            font-size:16px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>📢 İlan Ver</h1>
+</header>
+
+<div class="form">
+
+    <label>İlan Başlığı</label>
+    <input type="text" placeholder="Örneğin: 2020 Model Ford Transit">
+
+    <label>Kategori</label>
+    <select>
+        <option>İş Makinesi</option>
+        <option>Araç</option>
+        <option>Gayrimenkul</option>
+        <option>Usta ve Hizmet</option>
+    </select>
+
+    <label>Açıklama</label>
+    <textarea rows="6" placeholder="İlanınızı yazın..."></textarea>
+
+    <label>Telefon</label>
+    <input type="tel" placeholder="05XXXXXXXXX">
+
+    <button>İlanı Gönder</button>
+
+</div>
+
+</body>
+</html>
