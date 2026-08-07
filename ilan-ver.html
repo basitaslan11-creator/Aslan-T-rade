@@ -148,31 +148,31 @@ function ilanGonder(){
     const telefon = document.querySelectorAll("input")[3].value;
     const aciklama = document.querySelector("textarea").value;
 
-    if(
+    if (
         ad === "" ||
         baslik === "" ||
         kategori === "" ||
         fiyat === "" ||
         telefon === "" ||
         aciklama === ""
-    ){
+    ) {
         alert("Lütfen tüm alanları doldurun.");
         return;
     }
 
     const mesaj =
-        "🦁 ASLAN TRADE YENİ İLAN%0A%0A" +
-        "👤 Ad: " + ad + "%0A" +
-        "📌 İlan: " + baslik + "%0A" +
-        "📂 Kategori: " + kategori + "%0A" +
-        "💰 Fiyat: " + fiyat + " TL%0A" +
-        "📞 Telefon: " + telefon + "%0A" +
+        "🦁 ASLAN TRADE YENİ İLAN\n\n" +
+        "👤 Ad: " + ad + "\n" +
+        "📌 İlan: " + baslik + "\n" +
+        "📂 Kategori: " + kategori + "\n" +
+        "💰 Fiyat: " + fiyat + " TL\n" +
+        "📞 Telefon: " + telefon + "\n" +
         "📝 Açıklama: " + aciklama;
 
     const whatsappNumara = "905XXXXXXXXX";
 
     window.open(
-        "https://wa.me/" + whatsappNumara + "?text=" + mesaj,
+        "https://wa.me/" + whatsappNumara + "?text=" + encodeURIComponent(mesaj),
         "_blank"
     );
 }
