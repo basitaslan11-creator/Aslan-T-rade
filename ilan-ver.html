@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -8,176 +7,234 @@
 <title>İlan Ver | ASLAN TRADE</title>
 
 <style>
-    body{
-        font-family:Arial,sans-serif;
-        background:#f3f4f6;
-        margin:0;
-    }
 
-    header{
-        background:#111827;
-        color:white;
-        text-align:center;
-        padding:20px;
-    }
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f3f4f6;
+}
 
-    header h1{
-        margin:0;
-    }
+header{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+}
 
-    header p{
-        margin:8px 0 0;
-    }
+header h1{
+    margin:0;
+    font-size:28px;
+}
 
-    .form{
-        max-width:600px;
-        margin:40px auto;
-        background:white;
-        padding:25px;
-        border-radius:10px;
-        box-shadow:0 4px 10px rgba(0,0,0,0.1);
-    }
+header p{
+    margin:8px 0 0;
+}
 
-    label{
-        display:block;
-        font-weight:bold;
-        margin-top:10px;
-    }
+.form{
+    max-width:600px;
+    margin:30px auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
 
-    input, textarea, select{
-        width:100%;
-        padding:12px;
-        margin-top:10px;
-        margin-bottom:20px;
-        border:1px solid #ccc;
-        border-radius:6px;
-        box-sizing:border-box;
-        font-size:15px;
-    }
+.form h2{
+    text-align:center;
+    margin-top:0;
+}
 
-    button{
-        width:100%;
-        padding:14px;
-        background:#2563eb;
-        color:white;
-        border:none;
-        border-radius:6px;
-        font-size:16px;
-        cursor:pointer;
-    }
+label{
+    display:block;
+    font-weight:bold;
+    margin-top:15px;
+}
 
-    button:hover{
-        background:#1d4ed8;
-    }
+input,
+select,
+textarea{
+    width:100%;
+    padding:13px;
+    margin-top:8px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:7px;
+    box-sizing:border-box;
+    font-size:15px;
+}
 
-    .geri{
-        display:block;
-        text-align:center;
-        margin-top:20px;
-        color:#2563eb;
-        text-decoration:none;
-    }
+button{
+    width:100%;
+    padding:15px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:7px;
+    font-size:17px;
+    cursor:pointer;
+}
 
-    .bilgi{
-        text-align:center;
-        color:#555;
-        margin-bottom:20px;
-    }
+button:hover{
+    background:#1d4ed8;
+}
+
+.geri{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    color:#2563eb;
+    text-decoration:none;
+}
+
 </style>
-
 </head>
 
 <body>
 
 <header>
-    <h1>🦁 ASLAN TRADE</h1>
-    <p>İlan Ver</p>
+
+<h1>🦁 ASLAN TRADE</h1>
+
+<p>Ücretsiz İlan Ver</p>
+
 </header>
+
 
 <div class="form">
 
-```
-<h2>İlanınızı Yayınlayın</h2>
+<h2>İlan Bilgileri</h2>
 
-<p class="bilgi">
-    Satmak veya hizmet vermek istediğiniz ürünün bilgilerini girin.
-</p>
 
-<label>Adınız</label>
-<input type="text" placeholder="Adınız Soyadınız">
+<label>Adınız Soyadınız</label>
+
+<input
+type="text"
+id="ad"
+placeholder="Adınız Soyadınız"
+>
+
 
 <label>İlan Başlığı</label>
-<input type="text" placeholder="Örneğin: 2020 Model Ford Transit">
+
+<input
+type="text"
+id="baslik"
+placeholder="Örneğin: 2020 Model Ford Transit"
+>
+
 
 <label>Kategori</label>
-<select>
-    <option value="">Kategori Seçin</option>
-    <option>İş Makinesi</option>
-    <option>Araç</option>
-    <option>Gayrimenkul</option>
-    <option>Usta ve Hizmet</option>
+
+<select id="kategori">
+
+<option value="">Kategori Seçin</option>
+
+<option value="Araç">Araç</option>
+
+<option value="İş Makinesi">İş Makinesi</option>
+
+<option value="Gayrimenkul">Gayrimenkul</option>
+
+<option value="Usta ve Hizmet">Usta ve Hizmet</option>
+
+<option value="Diğer">Diğer</option>
+
 </select>
 
+
 <label>Fiyat</label>
-<input type="number" placeholder="Örneğin: 850000">
+
+<input
+type="number"
+id="fiyat"
+placeholder="Örneğin: 600000"
+>
+
 
 <label>Telefon</label>
-<input type="tel" placeholder="05XXXXXXXXX">
 
-<label>Açıklama</label>
-<textarea rows="6" placeholder="İlanınızı detaylı şekilde yazın..."></textarea>
+<input
+type="tel"
+id="telefon"
+placeholder="05XXXXXXXXX"
+>
 
-<button type="button" onclick="ilanGonder()">
-    İlanı Gönder
+
+<label>İlan Açıklaması</label>
+
+<textarea
+id="aciklama"
+rows="7"
+placeholder="İlanınız hakkında detaylı bilgi yazın..."
+></textarea>
+
+
+<button onclick="ilanGonder()">
+İlanı Gönder
 </button>
 
-<a href="index.html" class="geri">
-    ← Ana Sayfaya Dön
-</a>
 
+<a href="index.html" class="geri">
+← Ana Sayfaya Dön
+</a>
 
 </div>
 
+
 <script>
+
 function ilanGonder(){
 
-    const ad = document.querySelectorAll("input")[0].value;
-    const baslik = document.querySelectorAll("input")[1].value;
-    const kategori = document.querySelector("select").value;
-    const fiyat = document.querySelectorAll("input")[2].value;
-    const telefon = document.querySelectorAll("input")[3].value;
-    const aciklama = document.querySelector("textarea").value;
+    const ad = document.getElementById("ad").value;
+    const baslik = document.getElementById("baslik").value;
+    const kategori = document.getElementById("kategori").value;
+    const fiyat = document.getElementById("fiyat").value;
+    const telefon = document.getElementById("telefon").value;
+    const aciklama = document.getElementById("aciklama").value;
 
-    if (
+
+    if(
         ad === "" ||
         baslik === "" ||
         kategori === "" ||
         fiyat === "" ||
         telefon === "" ||
         aciklama === ""
-    ) {
+    ){
+
         alert("Lütfen tüm alanları doldurun.");
+
         return;
+
     }
+
 
     const mesaj =
         "🦁 ASLAN TRADE YENİ İLAN\n\n" +
-        "👤 Ad: " + ad + "\n" +
-        "📌 İlan: " + baslik + "\n" +
+        "👤 Ad Soyad: " + ad + "\n" +
+        "📌 İlan Başlığı: " + baslik + "\n" +
         "📂 Kategori: " + kategori + "\n" +
         "💰 Fiyat: " + fiyat + " TL\n" +
         "📞 Telefon: " + telefon + "\n" +
         "📝 Açıklama: " + aciklama;
 
+
     const whatsappNumara = "905XXXXXXXXX";
 
-    window.open(
-        "https://wa.me/" + whatsappNumara + "?text=" + encodeURIComponent(mesaj),
-        "_blank"
-    );
+
+    const whatsappLink =
+        "https://wa.me/" +
+        whatsappNumara +
+        "?text=" +
+        encodeURIComponent(mesaj);
+
+
+    window.open(whatsappLink, "_blank");
+
 }
+
 </script>
+
 
 </body>
 </html>
-
