@@ -1,1 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>İlan Ver | ASLAN TRADE</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+}
+
+header{
+    background:#111827;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:28px;
+}
+
+nav{
+    margin-top:15px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 8px;
+    font-size:15px;
+}
+
+.container{
+    max-width:600px;
+    margin:30px auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.1);
+}
+
+h2{
+    text-align:center;
+    color:#111827;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:12px;
+    margin-top:7px;
+    border:1px solid #ccc;
+    border-radius:7px;
+    box-sizing:border-box;
+    font-size:15px;
+}
+
+textarea{
+    height:120px;
+    resize:none;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    background:#16a34a;
+    color:white;
+    border:none;
+    border-radius:7px;
+    font-size:17px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#15803d;
+}
+
+footer{
+    margin-top:40px;
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🦁 ASLAN TRADE</h1>
+
+<nav>
+<a href="index.html">Ana Sayfa</a>
+<a href="index.html">İlanlar</a>
+<a href="hizmetler.html">Hizmetler</a>
+<a href="#">Hakkımızda</a>
+<a href="#">İletişim</a>
+</nav>
+
+</header>
+
+
+<div class="container">
+
+<h2>📢 İlan Ver</h2>
+
+<label>Adınız Soyadınız</label>
+<input type="text" id="ad" placeholder="Adınız ve soyadınız">
+
+<label>Telefon Numaranız</label>
+<input type="tel" id="telefon" placeholder="05XXXXXXXXX">
+
+<label>İlan Başlığı</label>
+<input type="text" id="baslik" placeholder="Örn: 2015 Ford Transit">
+
+<label>Kategori</label>
+
+<select id="kategori">
+
+<option value="">Kategori Seçin</option>
+<option value="Araç">Araç</option>
+<option value="İş Makinesi">İş Makinesi</option>
+<option value="Gayrimenkul">Gayrimenkul</option>
+<option value="Diğer">Diğer</option>
+
+</select>
+
+
+<label>İlan Açıklaması</label>
+
+<textarea id="aciklama" placeholder="İlanınız hakkında bilgi yazın..."></textarea>
+
+
+<button onclick="whatsappGonder()">
+📱 WhatsApp'tan İlan Gönder
+</button>
+
+</div>
+
+
+<footer>
+
+© 2026 ASLAN TRADE - Tüm Hakları Saklıdır.
+
+</footer>
+
+
+<script>
+
+function whatsappGonder(){
+
+let ad = document.getElementById("ad").value;
+let telefon = document.getElementById("telefon").value;
+let baslik = document.getElementById("baslik").value;
+let kategori = document.getElementById("kategori").value;
+let aciklama = document.getElementById("aciklama").value;
+
+if(ad === "" || telefon === "" || baslik === "" || kategori === "" || aciklama === ""){
+
+alert("Lütfen bütün alanları doldurun.");
+
+return;
+
+}
+
+let mesaj =
+"🦁 ASLAN TRADE İLAN BAŞVURUSU%0A%0A" +
+"👤 Ad Soyad: " + ad + "%0A" +
+"📞 Telefon: " + telefon + "%0A" +
+"📌 İlan Başlığı: " + baslik + "%0A" +
+"📂 Kategori: " + kategori + "%0A" +
+"📝 Açıklama: " + aciklama;
+
+let numara = "905XXXXXXXXX";
+
+let url = "https://wa.me/" + numara + "?text=" + mesaj;
+
+window.open(url, "_blank");
+
+}
+
+</script>
+
+</body>
+</html>
