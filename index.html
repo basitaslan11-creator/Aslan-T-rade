@@ -1,153 +1,116 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aslan Trade</title>
+
+<title>ASLAN TRADE</title>
 
 <style>
-.detay-btn{
-    display:inline-block;
-    margin-top:15px;
-    background:#2563eb;
-    color:white;
-    padding:10px 20px;
-    border-radius:6px;
-    text-decoration:none;
-    font-weight:bold;
+*{
+    box-sizing:border-box;
 }
 
-.detay-btn:hover{
-    background:#1d4ed8;
-}
-    .ozellikler{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    padding:50px 20px;
-    flex-wrap:wrap;
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+    color:#222;
 }
 
-.kart{
-    width:300px;
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-    text-align:center;
-}
-
-.kart h3{
-    margin-bottom:15px;
-}
-
-.kart:hover{
-    transform:translateY(-5px);
-    transition:0.3s;
-}
-    .hero{
-    text-align:center;
-    padding:80px 20px;
-    background:#f3f4f6;
-}
-
-.hero h1{
-    font-size:42px;
-    margin-bottom:15px;
-}
-
-.hero p{
-    font-size:20px;
-    color:#555;
-    margin-bottom:30px;
-}
-
-.buton{
-    display:inline-block;
-    background:#f59e0b;
-    color:white;
-    padding:15px 30px;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-.buton:hover{
-    background:#d97706;
-}
-    .header{
+header{
     background:#111827;
     color:white;
+    padding:18px 20px;
+}
+
+.header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:15px 30px;
+    flex-wrap:wrap;
 }
 
-.logo h2{
-    margin:0;
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
 }
 
 nav a{
     color:white;
     text-decoration:none;
-    margin-left:20px;
+    padding:8px 10px;
     font-weight:bold;
-    transition:0.3s;
 }
 
 nav a:hover{
     color:#fbbf24;
 }
-    body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f4f4f4;
-}
-
-header{
-    background:#0b5ed7;
-    color:white;
-    padding:20px;
-    text-align:center;
-}
-
-nav{
-    background:#083b8a;
-    text-align:center;
-    padding:15px;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin:15px;
-    font-weight:bold;
-}
 
 .hero{
+    background:white;
     text-align:center;
-    padding:70px 20px;
+    padding:60px 20px;
 }
 
-.hero h2{
-    font-size:35px;
+.hero h1{
+    font-size:36px;
+    margin-bottom:15px;
 }
 
 .hero p{
-    font-size:20px;
+    font-size:18px;
+    color:#555;
 }
 
-.button{
+.buton{
     display:inline-block;
-    margin-top:25px;
-    background:#28a745;
+    margin-top:20px;
+    background:#f59e0b;
     color:white;
-    padding:15px 35px;
+    padding:14px 25px;
     border-radius:8px;
     text-decoration:none;
-    font-size:20px;
+    font-weight:bold;
+}
+
+.arama{
+    text-align:center;
+    padding:25px 15px;
+    background:#e5e7eb;
+}
+
+.arama input{
+    padding:12px;
+    width:250px;
+    max-width:90%;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.arama button{
+    padding:12px 20px;
+    margin-left:5px;
+    border:0;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-weight:bold;
+}
+
+.baslik{
+    text-align:center;
+    padding:30px 20px 10px;
+}
+
+.baslik h2{
+    margin:0;
 }
 
 .cards{
@@ -155,246 +118,231 @@ nav a{
     justify-content:center;
     gap:20px;
     flex-wrap:wrap;
-    margin:40px;
+    padding:20px;
 }
 
 .card{
     background:white;
-    width:250px;
+    width:280px;
     padding:20px;
-    border-radius:10px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
+}
+
+.card h3{
+    margin-top:0;
+}
+
+.ilan-karti{
+    background:white;
+    width:280px;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
+}
+
+.ilan-karti h3{
+    margin-top:0;
+    color:#111827;
+}
+
+.fiyat{
+    display:block;
+    margin-top:15px;
+    color:#16a34a;
+    font-size:20px;
+}
+
+.detay-btn{
+    display:inline-block;
+    margin-top:15px;
+    background:#2563eb;
+    color:white;
+    padding:10px 18px;
+    border-radius:7px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.bolum{
+    background:white;
+    margin-top:30px;
+    padding:40px 20px;
     text-align:center;
-    box-shadow:0 0 10px rgba(0,0,0,.15);
-}.card:hover{
-    transform:scale(1.05);
 }
 
 footer{
-    background:#222;
+    background:#111827;
     color:white;
     text-align:center;
-    padding:20px;
+    padding:25px;
     margin-top:40px;
 }
-</style>
 
+@media(max-width:600px){
+
+    .header{
+        justify-content:center;
+        text-align:center;
+    }
+
+    nav{
+        justify-content:center;
+        margin-top:15px;
+    }
+
+    .hero h1{
+        font-size:28px;
+    }
+
+    .arama button{
+        margin-top:10px;
+        margin-left:0;
+    }
+}
+</style>
 </head>
 
 <body>
-<header class="header">
-    <div class="logo">
-        <h2>🦁 ASLAN TRADE</h2>
-    </div>
 
-    <nav>
-    <a href="#">Ana Sayfa</a>
-    <a href="ilanlar.html">İlanlar</a>
-    <a href="ilan-ver.html">İlan Ver</a>
-    <a href="hizmetler.html">Hizmetler</a>
-    <a href="ustaol.html">Usta Ol</a>
-    <a href="#">Hakkımızda</a>
-    <a href="#">İletişim</a>
-</nav>
-</header>
 <header>
-<section class="hero">
-    <h1>Türkiye'nin Güvenilir Komisyon ve Ticaret Platformu</h1>
-    <p>Alıcı ile satıcıyı güvenli ve hızlı şekilde buluşturuyoruz.</p>
+    <div class="header">
 
-    <a href="ilan-ver.html" class="buton">Hemen İlan Ver</a>
-</section>
-<section class="ozellikler">
-    <div class="kart">
-        <h3>🚜 İş Makinesi</h3>
-        <p>Ekskavatör, yükleyici, dozer ve diğer iş makineleri.</p>
-    <a href="is-makineleri.html" class="detay-btn">
-Detayları Gör
-</a>
-        
-    </div>
+        <div class="logo">
+            🦁 ASLAN TRADE
+        </div>
 
-    <div class="kart">
-        <h3>🚗 Araç Alım Satımı</h3>
-        <p>Otomobil, kamyon, kamyonet ve ticari araç ilanları.</p>
-    </div>
+        <nav>
+            <a href="#">Ana Sayfa</a>
+            <a href="ilanlar.html">İlanlar</a>
+            <a href="ilan-ver.html">İlan Ver</a>
+            <a href="hizmetler.html">Hizmetler</a>
+            <a href="ustaol.html">Usta Ol</a>
+        </nav>
 
-    <div class="kart">
-        <h3>🏡 Gayrimenkul</h3>
-        <p>Arsa, tarla, ev, iş yeri ve yatırım fırsatları.</p>
-   <a href="#" class="detay-btn">Detayları Gör</a>
     </div>
-</section>
-    
 </header>
 
+<section class="hero">
 
+    <h1>Türkiye'nin Güvenilir Komisyon ve Ticaret Platformu</h1>
 
+    <p>
+        Alıcı ile satıcıyı güvenli ve hızlı şekilde buluşturuyoruz.
+    </p>
 
+    <a href="ilan-ver.html" class="buton">
+        Hemen İlan Ver
+    </a>
 
-    
-<nav>
-<a href="#">Ana Sayfa</a>
-<a href="#ilan">İlan Ver</a>
-<a href="#">Araçlar</a>
-<a href="#">İş Makineleri</a>
-<a href="#">Gayrimenkul</a>
-<a href="#">İletişim</a>
-</nav>
-<div style="text-align:center;padding:20px;">
-<input id="arama" type="text" placeholder="İlan ara..." style="padding:12px;width:250px;border-radius:8px;border:1px solid #ccc;">
-<button class="button" onclick="aramaYap()">Ara</button>
-</div> <section style="background:#fff;padding:40px;text-align:center;">
-<h2>📢 Güncel İlanlar</h2>
+</section>
+
+<div class="arama">
+
+    <input
+        id="arama"
+        type="text"
+        placeholder="İlan ara..."
+    >
+
+    <button onclick="aramaYap()">
+        Ara
+    </button>
+
+</div>
+
+<section class="baslik">
+
+    <h2>📢 Güncel İlanlar</h2>
+
 </section>
 
 <div id="ilanlar" class="cards">
-    İlanlar yükleniyor...
-</div>
 
-<div class="cards">
-<img src="https://via.placeholder.com/250x150" width="250">
-<div class="card">
-<h2 style="text-align:center;margin-top:40px;">🚗 Araç İlanları</h2>
-    <h3>🚗 2022 Fiat Egea</h3>
-<p>Fiyat: 850.000 TL</p>
-<a class="button" href="https://wa.me/905396305613?text=Merhaba%20ASLAN%20TRADE,%20ilan%20hakkında%20bilgi%20almak%20istiyorum." target="_blank">
-Detayları Gör
-</a>
-</div>
-<div class="card">
-<h2 style="text-align:center;margin-top:40px;">🚜 İş Makinesi İlanları</h2>
-<h3>🚜 JCB 3CX</h3>
-<p>Fiyat: 2.200.000 TL</p>
-
-<a href="is-makineleri.html" class="detay-btn">
-Detayları Gör
-</a>
+    <p>İlanlar yükleniyor...</p>
 
 </div>
 
+<section class="bolum">
 
-<div class="card">
-<h2 style="text-align:center;margin-top:40px;">🏠 Gayrimenkul İlanları</h2>
-<h3>🏠 500 m² Arsa</h3>
-<p>Fiyat: 1.450.000 TL</p>
-<a href="gayrimenkul.html" class="detay-btn">Detayları Gör</a>
-</div>
+    <h2>🚗 Araç</h2>
 
-</div>
-<div class="hero">
-<h2>Alıcı ve Satıcıyı Güvenle Buluşturuyoruz</h2>
+    <p>
+        Otomobil, kamyon, kamyonet ve ticari araç ilanları.
+    </p>
 
-<p>
-Araç, iş makinesi, arsa ve gayrimenkul ilanlarını kolayca yayınlayın.
-</p>
-
-<a class="button" href="#">Hemen İlan Ver</a>
-</div>
-
-<div class="cards">
-
-<div class="card">
-<h3>🚗 Araçlar</h3>
-<p>Otomobil, kamyon, minibüs ve ticari araç ilanları.</p>
-<a href="araclar.html" class="detay-btn">Detayları Gör</a>
-</div>
-
-<div class="card">
-<h3>🚜 İş Makineleri</h3>
-<p>Ekskavatör, yükleyici, vinç ve diğer makineler.</p>
-</div>
-
-<div class="card">
-<h3>🏠 Gayrimenkul</h3>
-<p>Arsa, tarla, ev ve iş yeri ilanları.</p>
-</div>
-
-</div>
-<a id="ilan"></a>
-    <section style="background:white;padding:40px;text-align:center;margin-top:40px;">
-<h2>İlan Ver</h2>
-
-<p>Satmak istediğiniz ürünün bilgilerini bize gönderin.</p>
-
-<input placeholder="Adınız" style="padding:10px;margin:5px;"><br>
-
-<input placeholder="Telefon Numaranız" style="padding:10px;margin:5px;"><br>
-
-<input placeholder="İlan Başlığı" style="padding:10px;margin:5px;"><br>
-<select id="kategori" style="padding:10px;margin:5px;">
-<option>Araç</option>
-<option>İş Makinesi</option>
-<option>Gayrimenkul</option>
-<option>Diğer</option>
-</select>
-<br>
-<textarea placeholder="İlan Açıklaması" style="padding:10px;margin:5px;"></textarea><br>
-<p>📸 Fotoğrafları WhatsApp üzerinden gönderebilirsiniz.</p>
-<button class="button" onclick="whatsappGonder()">WhatsApp'tan Gönder</button>
-
+    <a href="araclar.html" class="detay-btn">
+        Araç İlanları
+    </a>
 
 </section>
-<section style="background:#fff;padding:40px;text-align:center;margin-top:40px;">
-<h2>Neden ASLAN TRADE?</h2>
 
-<div class="cards">
+<section class="bolum">
 
-<div class="card">
-<h3>🤝 Güvenli Ticaret</h3>
-<p>Alıcı ve satıcıları güvenli şekilde buluşturmayı hedefliyoruz.</p>
-</div>
+    <h2>🚜 İş Makineleri</h2>
 
-<div class="card">
-<h3>✅ Komisyon Desteği</h3>
-<p>Ticari işlemlerde doğru bağlantılar kurmanıza yardımcı oluyoruz.</p>
-</div>
+    <p>
+        Ekskavatör, yükleyici, vinç ve diğer iş makineleri.
+    </p>
 
-<div class="card">
-<h3>📞 Kolay İletişim</h3>
-<p>İlanlar için hızlı WhatsApp iletişimi sağlıyoruz.</p>
-</div>
+    <a href="is-makineleri.html" class="detay-btn">
+        İş Makinelerini Gör
+    </a>
 
-</div>
 </section>
-  <section style="background:#f8f9fa;padding:40px;text-align:center;">
-    <h2>🔧 Hizmet Veren Firmalar</h2>
-    <p>İhtiyacınız olan ustayı kolayca bulun.</p>
+
+<section class="bolum">
+
+    <h2>🏠 Gayrimenkul</h2>
+
+    <p>
+        Arsa, tarla, ev ve iş yeri ilanları.
+    </p>
+
+    <a href="gayrimenkul.html" class="detay-btn">
+        Gayrimenkul İlanları
+    </a>
+
+</section>
+
+<section class="bolum">
+
+    <h2>🤝 Neden ASLAN TRADE?</h2>
 
     <div class="cards">
 
         <div class="card">
-            <h3>⚡ Elektrikçi</h3>
-            <p>Elektrik arızası ve tesisat işleri</p>
-            <a class="button" href="tel:05396305613">Hemen Ara</a>
+            <h3>🔒 Güvenli Ticaret</h3>
+            <p>
+                Alıcı ve satıcıları güvenli şekilde buluşturmayı hedefliyoruz.
+            </p>
         </div>
 
         <div class="card">
-            <h3>🎨 Boyacı</h3>
-            <p>Ev ve iş yeri boya hizmetleri</p>
-            <a class="button" href="tel:05396305613">Hemen Ara</a>
+            <h3>💼 Komisyon Desteği</h3>
+            <p>
+                Ticari işlemlerde doğru bağlantılar kurmanıza yardımcı oluyoruz.
+            </p>
         </div>
 
         <div class="card">
-            <h3>🚚 Nakliyeci</h3>
-            <p>Evden eve ve şehirler arası taşımacılık</p>
-            <a class="button" href="tel:05396305613">Hemen Ara</a>
-        </div>
-
-        <div class="card">
-            <h3>🧱 Sıvacı</h3>
-            <p>Alçı ve sıva uygulamaları</p>
-            <a class="button" href="tel:05396305613">Hemen Ara</a>
+            <h3>📞 Kolay İletişim</h3>
+            <p>
+                İlanlar için hızlı iletişim sağlıyoruz.
+            </p>
         </div>
 
     </div>
-</section>  
-    <footer>
 
+</section>
 
+<footer>
 
-© 2026 ASLAN TRADE<br>
+    © 2026 ASLAN TRADE
 
-Tüm Hakları Saklıdır.
+    <br>
+
+    Tüm Hakları Saklıdır.
 
 </footer>
 
@@ -403,83 +351,124 @@ Tüm Hakları Saklıdır.
 
 function aramaYap(){
 
-let kelime = document.getElementById("arama").value;
+    let kelime = document.getElementById("arama").value;
 
-alert("Aranıyor: " + kelime);
+    if(kelime.trim() === ""){
+        alert("Lütfen aramak istediğiniz ilanı yazın.");
+        return;
+    }
 
-}
-
-function whatsappGonder(){
-
-let ad = document.querySelector('input[placeholder="Adınız"]').value;
-let telefon = document.querySelector('input[placeholder="Telefon Numaranız"]').value;
-let baslik = document.querySelector('input[placeholder="İlan Başlığı"]').value;
-let aciklama = document.querySelector('textarea').value;
-let kategori = document.querySelector('#kategori').value;
-
-let mesaj = 
-"Merhaba ASLAN TRADE ilan vermek istiyorum.%0A%0A" +
-"Ad: " + ad + "%0A" +
-"Telefon: " + telefon + "%0A" +
-"Kategori: " + kategori + "%0A" +
-"İlan: " + baslik + "%0A" +
-"Açıklama: " + aciklama;
-
-window.open("https://wa.me/905396305613?text=" + mesaj,"_blank");
+    alert("Aranıyor: " + kelime);
 
 }
-
 
 </script>
-<script>
-function ilanGonder() {
-    whatsappGonder();
+
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs
 }
-</script>
-<script>
-const ilanFormu = document.querySelector("form");
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-if (ilanFormu) {
-    ilanFormu.addEventListener("submit", function(e) {
-        e.preventDefault();
-        alert("İlan bilgileri hazır!");
-    });
-}
-</script>
-<script>
-import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-async function ilanlariGetir() {
-    const ilanlar = document.getElementById("ilanlar");
+const firebaseConfig = {
 
-    if (!ilanlar) return;
+    apiKey: "AIzaSyCi8EdXncxji-CBvwRakQhtuLeLlcD-HCs",
 
-    ilanlar.innerHTML = "İlanlar yükleniyor...";
+    authDomain: "aslan-trade.firebaseapp.com",
 
-    try {
-        const snapshot = await getDocs(collection(db, "ilan"));
+    projectId: "aslan-trade",
+
+    storageBucket: "aslan-trade.firebasestorage.app",
+
+    messagingSenderId: "908993990043",
+
+    appId: "1:908993990043:web:0b52daf9f1b6ed8ed7653e",
+
+    measurementId: "G-XVTTPW6KDF"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+async function ilanlariGetir(){
+
+    const ilanlar =
+        document.getElementById("ilanlar");
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(db,"ilan")
+            );
 
         ilanlar.innerHTML = "";
 
-        snapshot.forEach((doc) => {
+
+        if(snapshot.empty){
+
+            ilanlar.innerHTML =
+                "<p>Henüz ilan bulunmuyor.</p>";
+
+            return;
+        }
+
+
+        snapshot.forEach((doc)=>{
+
             const ilan = doc.data();
 
+
             ilanlar.innerHTML += `
+
                 <div class="ilan-karti">
-                    <h3>${ilan.Başlık || ""}</h3>
-                    <p>${ilan.Açıklama || ""}</p>
-                    <strong>${ilan.fiyat || ""} TL</strong>
+
+                    <h3>
+                        ${ilan.Başlık || "İlan"}
+                    </h3>
+
+                    <p>
+                        ${ilan.Açıklama || ""}
+                    </p>
+
+                    <strong class="fiyat">
+                        ${ilan.fiyat || ""} TL
+                    </strong>
+
                 </div>
+
             `;
+
         });
 
-    } catch (hata) {
-        console.log(hata);
-        ilanlar.innerHTML = "İlanlar yüklenemedi.";
+
+    }catch(hata){
+
+        console.error(hata);
+
+        ilanlar.innerHTML =
+            "<p>İlanlar yüklenemedi.</p>";
+
     }
+
 }
 
+
 ilanlariGetir();
+
 </script>
+
 </body>
 </html>
