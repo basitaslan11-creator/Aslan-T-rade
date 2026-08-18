@@ -409,10 +409,7 @@ async function ilanlariGetir(){
 
     try{
 
-        const snapshot =
-            await getDocs(
-                collection(db,"ilan")
-            );
+        const snapshot = await getDocs(collection(db, "İlanlar"));
 
         ilanlar.innerHTML = "";
 
