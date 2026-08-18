@@ -432,5 +432,15 @@ function ilanGonder() {
     whatsappGonder();
 }
 </script>
+<script>
+const ilanFormu = document.querySelector("form");
+
+if (ilanFormu) {
+    ilanFormu.addEventListener("submit", function(e) {
+        e.preventDefault();
+        alert("İlan bilgileri hazır!");
+    });
+}
+</script>
 </body>
 </html>
