@@ -442,5 +442,40 @@ if (ilanFormu) {
     });
 }
 </script>
+<script>
+import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+async function ilanlariGetir() {
+    const ilanlar = document.getElementById("ilanlar");
+
+    if (!ilanlar) return;
+
+    ilanlar.innerHTML = "İlanlar yükleniyor...";
+
+    try {
+        const snapshot = await getDocs(collection(db, "ilan"));
+
+        ilanlar.innerHTML = "";
+
+        snapshot.forEach((doc) => {
+            const ilan = doc.data();
+
+            ilanlar.innerHTML += `
+                <div class="ilan-karti">
+                    <h3>${ilan.Başlık || ""}</h3>
+                    <p>${ilan.Açıklama || ""}</p>
+                    <strong>${ilan.fiyat || ""} TL</strong>
+                </div>
+            `;
+        });
+
+    } catch (hata) {
+        console.log(hata);
+        ilanlar.innerHTML = "İlanlar yüklenemedi.";
+    }
+}
+
+ilanlariGetir();
+</script>
 </body>
 </html>
