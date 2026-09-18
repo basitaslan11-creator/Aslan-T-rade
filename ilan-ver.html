@@ -109,7 +109,7 @@ footer{
 
 <nav>
 <a href="index.html">Ana Sayfa</a>
-<a href="index.html">İlanlar</a>
+<a href="ilanlar.html">İlanlar</a>
 <a href="hizmetler.html">Hizmetler</a>
 <a href="#">Hakkımızda</a>
 <a href="#">İletişim</a>
@@ -149,8 +149,8 @@ footer{
 <textarea id="aciklama" placeholder="İlanınız hakkında bilgi yazın..."></textarea>
 
 
-<button onclick="whatsappGonder()">
-📱 WhatsApp'tan İlan Gönder
+<button onclick="ilanGonder()">
+📱 İlanı Gönder
 </button>
 
 </div>
@@ -163,37 +163,131 @@ footer{
 </footer>
 
 
-<script>
+<script type="module">
 
-function whatsappGonder(){
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-let ad = document.getElementById("ad").value;
-let telefon = document.getElementById("telefon").value;
-let baslik = document.getElementById("baslik").value;
-let kategori = document.getElementById("kategori").value;
-let aciklama = document.getElementById("aciklama").value;
-
-if(ad === "" || telefon === "" || baslik === "" || kategori === "" || aciklama === ""){
-
-alert("Lütfen bütün alanları doldurun.");
-
-return;
-
+import {
+    getFirestore,
+    collection,
+    addDoc
 }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-let mesaj =
-"🦁 ASLAN TRADE İLAN BAŞVURUSU%0A%0A" +
-"👤 Ad Soyad: " + ad + "%0A" +
-"📞 Telefon: " + telefon + "%0A" +
-"📌 İlan Başlığı: " + baslik + "%0A" +
-"📂 Kategori: " + kategori + "%0A" +
-"📝 Açıklama: " + aciklama;
 
-let numara = "905396305613";
+const firebaseConfig = {
 
-let url = "https://wa.me/" + numara + "?text=" + mesaj;
+    apiKey: "AIzaSyCi8EdXncxji-CBvwRakQhtuLeLlcD-HCs",
 
-window.open(url, "_blank");
+    authDomain: "aslan-trade.firebaseapp.com",
+
+    projectId: "aslan-trade",
+
+    storageBucket: "aslan-trade.firebasestorage.app",
+
+    messagingSenderId: "908993990043",
+
+    appId: "1:908993990043:web:0b52daf9f1b6ed8ed7653e",
+
+    measurementId: "G-XVTTPW6KDF"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+window.ilanGonder = async function(){
+
+    let ad = document.getElementById("ad").value.trim();
+    let telefon = document.getElementById("telefon").value.trim();
+    let baslik = document.getElementById("baslik").value.trim();
+    let kategori = document.getElementById("kategori").value;
+    let aciklama = document.getElementById("aciklama").value.trim();
+
+
+    if(
+        ad === "" ||
+        telefon === "" ||
+        baslik === "" ||
+        kategori === "" ||
+        aciklama === ""
+    ){
+
+        alert("Lütfen bütün alanları doldurun.");
+
+        return;
+    }
+
+
+    try{
+
+        await addDoc(
+            collection(db, "İlanlar"),
+            {
+
+                Ad: ad,
+
+                Telefon: telefon,
+
+                Başlık: baslik,
+
+                Kategori: kategori,
+
+                Açıklama: aciklama,
+
+                fiyat: "",
+
+                Tarih: new Date().toLocaleString("tr-TR")
+
+            }
+        );
+
+
+        let mesaj =
+        "🦁 ASLAN TRADE İLAN BAŞVURUSU\n\n" +
+        "👤 Ad Soyad: " + ad + "\n" +
+        "📞 Telefon: " + telefon + "\n" +
+        "📌 İlan Başlığı: " + baslik + "\n" +
+        "📂 Kategori: " + kategori + "\n" +
+        "📝 Açıklama: " + aciklama;
+
+
+        let numara = "905396305613";
+
+        let url =
+        "https://wa.me/" +
+        numara +
+        "?text=" +
+        encodeURIComponent(mesaj);
+
+
+        alert("İlanınız başarıyla kaydedildi. WhatsApp açılıyor.");
+
+
+        window.open(url, "_blank");
+
+
+        document.getElementById("ad").value = "";
+        document.getElementById("telefon").value = "";
+        document.getElementById("baslik").value = "";
+        document.getElementById("kategori").value = "";
+        document.getElementById("aciklama").value = "";
+
+
+    }catch(hata){
+
+        console.error(hata);
+
+        alert(
+            "İlan kaydedilirken bir hata oluştu. " +
+            "Lütfen tekrar deneyin."
+        );
+
+    }
 
 }
 
