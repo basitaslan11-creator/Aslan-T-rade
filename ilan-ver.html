@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -144,6 +145,10 @@ footer{
 </select>
 
 
+<label>Fiyat</label>
+<input type="text" id="fiyat" placeholder="Örn: 600000 TL">
+
+
 <label>İlan Açıklaması</label>
 
 <textarea id="aciklama" placeholder="İlanınız hakkında bilgi yazın..."></textarea>
@@ -203,10 +208,21 @@ const db = getFirestore(app);
 window.ilanGonder = async function(){
 
     let ad = document.getElementById("ad").value.trim();
-    let telefon = document.getElementById("telefon").value.trim();
-    let baslik = document.getElementById("baslik").value.trim();
-    let kategori = document.getElementById("kategori").value;
-    let aciklama = document.getElementById("aciklama").value.trim();
+
+    let telefon =
+        document.getElementById("telefon").value.trim();
+
+    let baslik =
+        document.getElementById("baslik").value.trim();
+
+    let kategori =
+        document.getElementById("kategori").value;
+
+    let fiyat =
+        document.getElementById("fiyat").value.trim();
+
+    let aciklama =
+        document.getElementById("aciklama").value.trim();
 
 
     if(
@@ -214,6 +230,7 @@ window.ilanGonder = async function(){
         telefon === "" ||
         baslik === "" ||
         kategori === "" ||
+        fiyat === "" ||
         aciklama === ""
     ){
 
@@ -226,7 +243,7 @@ window.ilanGonder = async function(){
     try{
 
         await addDoc(
-            collection(db, "İlanlar"),
+            collection(db, "ilanlar"),
             {
 
                 Ad: ad,
@@ -237,9 +254,9 @@ window.ilanGonder = async function(){
 
                 Kategori: kategori,
 
-                Açıklama: aciklama,
+                fiyat: fiyat,
 
-                fiyat: "",
+                Açıklama: aciklama,
 
                 Tarih: new Date().toLocaleString("tr-TR")
 
@@ -253,10 +270,12 @@ window.ilanGonder = async function(){
         "📞 Telefon: " + telefon + "\n" +
         "📌 İlan Başlığı: " + baslik + "\n" +
         "📂 Kategori: " + kategori + "\n" +
+        "💰 Fiyat: " + fiyat + "\n" +
         "📝 Açıklama: " + aciklama;
 
 
         let numara = "905396305613";
+
 
         let url =
         "https://wa.me/" +
@@ -265,16 +284,24 @@ window.ilanGonder = async function(){
         encodeURIComponent(mesaj);
 
 
-        alert("İlanınız başarıyla kaydedildi. WhatsApp açılıyor.");
+        alert(
+            "İlanınız başarıyla kaydedildi. WhatsApp açılıyor."
+        );
 
 
         window.open(url, "_blank");
 
 
         document.getElementById("ad").value = "";
+
         document.getElementById("telefon").value = "";
+
         document.getElementById("baslik").value = "";
+
         document.getElementById("kategori").value = "";
+
+        document.getElementById("fiyat").value = "";
+
         document.getElementById("aciklama").value = "";
 
 
@@ -295,3 +322,4 @@ window.ilanGonder = async function(){
 
 </body>
 </html>
+```
