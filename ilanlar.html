@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>İlanlar | ASLAN TRADE</title>
@@ -38,6 +40,10 @@ nav a{
     font-weight:bold;
 }
 
+nav a:hover{
+    color:#60a5fa;
+}
+
 .container{
     max-width:1100px;
     margin:30px auto;
@@ -54,8 +60,8 @@ h2{
     padding:20px;
     border-radius:10px;
     margin-bottom:30px;
-    text-align:center;
     box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    text-align:center;
 }
 
 .search input{
@@ -72,6 +78,7 @@ h2{
     color:white;
     border:none;
     border-radius:6px;
+    cursor:pointer;
 }
 
 .ilanlar{
@@ -110,7 +117,7 @@ h2{
     border-radius:6px;
     text-decoration:none;
     text-align:center;
-    background:#111827;
+    font-weight:bold;
 }
 
 .telefon{
@@ -119,6 +126,10 @@ h2{
 
 .whatsapp{
     background:#16a34a;
+}
+
+.detay-ilan{
+    background:#111827;
 }
 
 footer{
@@ -133,7 +144,9 @@ footer{
 
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -178,11 +191,15 @@ Ara
 </div>
 
 
-<div class="ilanlar" id="ilanListesi">
+<div
+class="ilanlar"
+id="ilanListesi"
+>
 
 <p>İlanlar yükleniyor...</p>
 
 </div>
+
 
 </div>
 
@@ -226,55 +243,95 @@ const firebaseConfig = {
 };
 
 
-const app = initializeApp(firebaseConfig);
+const app =
+    initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
+const db =
+    getFirestore(app);
 
 
 async function ilanlariGetir(){
 
     const ilanListesi =
-        document.getElementById("ilanListesi");
+        document.getElementById(
+            "ilanListesi"
+        );
+
 
     ilanListesi.innerHTML =
         "<p>İlanlar yükleniyor...</p>";
+
 
     try{
 
         const snapshot =
             await getDocs(
-                collection(db,"ilanlar")
+                collection(
+                    db,
+                    "ilanlar"
+                )
             );
+
 
         ilanListesi.innerHTML = "";
 
+
         snapshot.forEach(function(doc){
 
-            const ilan = doc.data();
+            const ilan =
+                doc.data();
+
 
             if(
                 !ilan.Başlık ||
                 !ilan.Telefon ||
                 !ilan.fiyat
             ){
+
                 return;
+
             }
+
 
             const telefon =
                 ilan.Telefon || "";
 
-            const whatsappNumara =
-                telefon
-                .replace(/\D/g,"")
-                .replace(/^0/,"");
+
+            let whatsappNumara =
+                telefon.replace(
+                    /\D/g,
+                    ""
+                );
+
+
+            if(
+                whatsappNumara.startsWith("0")
+            ){
+
+                whatsappNumara =
+                    "90" +
+                    whatsappNumara.substring(1);
+
+            }
+            else if(
+                !whatsappNumara.startsWith("90")
+            ){
+
+                whatsappNumara =
+                    "90" +
+                    whatsappNumara;
+
+            }
+
 
             const mesaj =
                 "Merhaba, ASLAN TRADE üzerindeki " +
                 (ilan.Başlık || "ilan") +
                 " hakkında bilgi almak istiyorum.";
 
+
             const whatsappLink =
-                "https://wa.me/9" +
+                "https://wa.me/" +
                 whatsappNumara +
                 "?text=" +
                 encodeURIComponent(mesaj);
@@ -285,7 +342,7 @@ async function ilanlariGetir(){
                 <div class="ilan">
 
                     <h3>
-                        ${ilan.Başlık}
+                        ${ilan.Başlık || "İlan"}
                     </h3>
 
                     <p class="kategori">
@@ -300,12 +357,22 @@ async function ilanlariGetir(){
                         💰 ${ilan.fiyat} TL
                     </strong>
 
+
+                    <a
+                        href="ilan-detay.html?id=${doc.id}"
+                        class="detay detay-ilan"
+                    >
+                        🔎 İlan Detayını Gör
+                    </a>
+
+
                     <a
                         href="tel:${telefon}"
                         class="detay telefon"
                     >
                         📞 Telefonla Ara
                     </a>
+
 
                     <a
                         href="${whatsappLink}"
@@ -321,14 +388,18 @@ async function ilanlariGetir(){
 
         });
 
-        if(ilanListesi.innerHTML === ""){
+
+        if(
+            ilanListesi.innerHTML === ""
+        ){
 
             ilanListesi.innerHTML =
                 "<p>Henüz yayınlanabilir ilan bulunmuyor.</p>";
 
         }
 
-    }catch(hata){
+    }
+    catch(hata){
 
         console.error(hata);
 
@@ -349,21 +420,31 @@ window.ilanAra = function(){
         .toLowerCase()
         .trim();
 
+
     const ilanlar =
-        document.querySelectorAll(".ilan");
+        document.querySelectorAll(
+            ".ilan"
+        );
+
 
     ilanlar.forEach(function(ilan){
 
         const metin =
             ilan.innerText.toLowerCase();
 
-        if(metin.includes(arama)){
 
-            ilan.style.display = "block";
+        if(
+            metin.includes(arama)
+        ){
 
-        }else{
+            ilan.style.display =
+                "block";
 
-            ilan.style.display = "none";
+        }
+        else{
+
+            ilan.style.display =
+                "none";
 
         }
 
@@ -376,5 +457,7 @@ ilanlariGetir();
 
 </script>
 
+
 </body>
+
 </html>
