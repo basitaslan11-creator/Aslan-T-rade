@@ -1,148 +1,188 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>İlanlar | ASLAN TRADE</title>
+<title>İlanlar - ASLAN TRADE</title>
 
 <style>
+*{
+    box-sizing:border-box;
+}
 
 body{
     margin:0;
     font-family:Arial,sans-serif;
-    background:#f4f4f4;
-    color:#111827;
+    background:#f3f4f6;
+    color:#222;
 }
 
 header{
     background:#111827;
     color:white;
-    padding:20px;
+    padding:18px 15px;
     text-align:center;
 }
 
 header h1{
-    margin:0;
+    margin:0 0 12px;
+    font-size:28px;
 }
 
 nav{
-    margin-top:15px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
 }
 
 nav a{
     color:white;
     text-decoration:none;
-    margin:0 10px;
-    font-weight:bold;
+    background:#1f2937;
+    padding:9px 13px;
+    border-radius:6px;
+    font-size:14px;
 }
 
 nav a:hover{
-    color:#60a5fa;
+    background:#f59e0b;
+    color:#111;
 }
 
 .container{
     max-width:1100px;
-    margin:30px auto;
-    padding:20px;
+    margin:25px auto;
+    padding:0 15px;
 }
 
-h2{
+.baslik{
     text-align:center;
-    margin-bottom:30px;
+    margin-bottom:20px;
 }
 
-.search{
+.baslik h2{
+    margin-bottom:8px;
+}
+
+.filtreler{
     background:white;
-    padding:20px;
+    padding:15px;
     border-radius:10px;
-    margin-bottom:30px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
-    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    margin-bottom:25px;
 }
 
-.search input{
-    width:55%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:6px;
+.filtreler input,
+.filtreler select{
+    width:100%;
+    padding:13px;
+    margin-bottom:10px;
+    border:1px solid #ddd;
+    border-radius:7px;
     font-size:16px;
 }
 
-.search select{
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:6px;
-    font-size:16px;
-    margin-left:5px;
-}
-
-.search button{
-    padding:12px 20px;
-    background:#2563eb;
-    color:white;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
-    margin-left:5px;
-}
-
-.ilanlar{
+.cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:18px;
 }
 
-.ilan{
+.card{
     background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 3px 10px rgba(0,0,0,.10);
+    transition:.2s;
 }
 
-.ilan h3{
-    margin-top:0;
+.card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 6px 16px rgba(0,0,0,.15);
+}
+
+.card-top{
+    background:#111827;
+    color:white;
+    padding:18px;
+}
+
+.card-top h3{
+    margin:0 0 8px;
+    font-size:20px;
 }
 
 .kategori{
-    color:#2563eb;
+    display:inline-block;
+    background:#f59e0b;
+    color:#111;
+    padding:5px 9px;
+    border-radius:5px;
+    font-size:13px;
     font-weight:bold;
+}
+
+.card-body{
+    padding:18px;
+}
+
+.aciklama{
+    color:#555;
+    line-height:1.5;
+    min-height:45px;
 }
 
 .fiyat{
+    font-size:23px;
+    font-weight:bold;
+    color:#16a34a;
+    margin:15px 0;
+}
+
+.butonlar{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+
+.buton{
     display:block;
-    margin-top:10px;
-    font-size:18px;
+    text-align:center;
+    text-decoration:none;
+    padding:11px 8px;
+    border-radius:7px;
+    font-weight:bold;
+    font-size:14px;
 }
 
 .detay{
-    display:block;
-    margin-top:10px;
+    background:#2563eb;
     color:white;
-    padding:10px;
-    border-radius:6px;
-    text-decoration:none;
-    text-align:center;
-    font-weight:bold;
 }
 
 .telefon{
-    background:#2563eb;
+    background:#16a34a;
+    color:white;
 }
 
 .whatsapp{
-    background:#16a34a;
+    background:#25D366;
+    color:white;
+    margin-top:8px;
 }
 
-.detay-ilan{
-    background:#111827;
+.yok{
+    background:white;
+    padding:30px;
+    text-align:center;
+    border-radius:10px;
+    color:#666;
 }
 
 footer{
-    margin-top:50px;
+    margin-top:40px;
     background:#111827;
     color:white;
     text-align:center;
@@ -150,127 +190,91 @@ footer{
 }
 
 @media(max-width:600px){
-
-    .search input{
-        width:100%;
-        margin-bottom:10px;
+    header h1{
+        font-size:24px;
     }
 
-    .search select{
-        width:100%;
-        margin:0 0 10px 0;
+    .cards{
+        grid-template-columns:1fr;
     }
-
-    .search button{
-        width:100%;
-        margin:0;
-    }
-
-    nav a{
-        display:inline-block;
-        margin:5px;
-    }
-
 }
-
 </style>
-
 </head>
 
-
 <body>
-
 
 <header>
 
 <h1>🦁 ASLAN TRADE</h1>
 
 <nav>
-
 <a href="index.html">Ana Sayfa</a>
-
 <a href="ilanlar.html">İlanlar</a>
-
-<a href="ilan-ver.html">İlan Ver</a>
-
+<a href="ilan-ver.html">📢 İlan Ver</a>
 <a href="hizmetler.html">Hizmetler</a>
-
-<a href="#">Hakkımızda</a>
-
-<a href="#">İletişim</a>
-
+<a href="ustaol.html">Usta Ol</a>
 </nav>
 
 </header>
 
-
 <div class="container">
 
+<div class="baslik">
 <h2>📋 Güncel İlanlar</h2>
+<p>ASLAN TRADE üzerindeki güncel ilanları inceleyin.</p>
+</div>
 
-
-<div class="search">
+<div class="filtreler">
 
 <input
 type="text"
 id="arama"
-placeholder="İlan ara..."
+placeholder="🔎 İlan ara..."
+oninput="ilanlariFiltrele()"
 >
 
-
-<select id="kategori">
+<select id="kategori" onchange="ilanlariFiltrele()">
 
 <option value="">Tüm Kategoriler</option>
-
 <option value="Araç">🚗 Araç</option>
-
 <option value="İş Makinesi">🚜 İş Makinesi</option>
-
 <option value="Gayrimenkul">🏠 Gayrimenkul</option>
-
-<option value="Diğer">🔧 Diğer</option>
+<option value="Diğer">📦 Diğer</option>
 
 </select>
 
+</div>
 
-<button onclick="ilanAra()">
-Ara
-</button>
+<div id="ilanlar" class="cards">
+
+<div class="yok">
+İlanlar yükleniyor...
+</div>
 
 </div>
 
-
-<div
-class="ilanlar"
-id="ilanListesi"
->
-
-<p>İlanlar yükleniyor...</p>
-
 </div>
-
-
-</div>
-
 
 <footer>
 
-© 2026 ASLAN TRADE - Tüm Hakları Saklıdır.
+© 2026 ASLAN TRADE<br>
+Türkiye'nin Güvenilir Komisyon ve Ticaret Platformu
 
 </footer>
 
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
     getFirestore,
     collection,
     getDocs
 }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 const firebaseConfig = {
@@ -292,195 +296,178 @@ const firebaseConfig = {
 };
 
 
-const app =
-    initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-const db =
-    getFirestore(app);
+const db = getFirestore(app);
+
+
+let tumIlanlar = [];
 
 
 async function ilanlariGetir(){
 
-    const ilanListesi =
-        document.getElementById(
-            "ilanListesi"
-        );
-
-
-    ilanListesi.innerHTML =
-        "<p>İlanlar yükleniyor...</p>";
-
+    const alan = document.getElementById("ilanlar");
 
     try{
 
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "ilanlar"
-                )
-            );
+        const snapshot = await getDocs(
+            collection(db,"ilanlar")
+        );
 
+        tumIlanlar = [];
 
-        ilanListesi.innerHTML = "";
+        snapshot.forEach((doc)=>{
 
-
-        snapshot.forEach(function(doc){
-
-            const ilan =
-                doc.data();
-
+            const ilan = doc.data();
 
             if(
-                !ilan.Başlık ||
-                !ilan.Telefon ||
-                !ilan.fiyat
+                ilan.Başlık &&
+                ilan.Telefon &&
+                ilan.fiyat
             ){
 
-                return;
+                tumIlanlar.push({
+                    id:doc.id,
+                    ...ilan
+                });
 
             }
-
-
-            const telefon =
-                ilan.Telefon || "";
-
-
-            let whatsappNumara =
-                telefon.replace(
-                    /\D/g,
-                    ""
-                );
-
-
-            if(
-                whatsappNumara.startsWith("0")
-            ){
-
-                whatsappNumara =
-                    "90" +
-                    whatsappNumara.substring(1);
-
-            }
-            else if(
-                !whatsappNumara.startsWith("90")
-            ){
-
-                whatsappNumara =
-                    "90" +
-                    whatsappNumara;
-
-            }
-
-
-            const mesaj =
-                "Merhaba, ASLAN TRADE üzerindeki " +
-                (ilan.Başlık || "ilan") +
-                " hakkında bilgi almak istiyorum.";
-
-
-            const whatsappLink =
-                "https://wa.me/" +
-                whatsappNumara +
-                "?text=" +
-                encodeURIComponent(mesaj);
-
-
-            ilanListesi.innerHTML += `
-
-                <div
-                    class="ilan"
-                    data-kategori="${ilan.Kategori || "Diğer"}"
-                >
-
-                    <h3>
-                        ${ilan.Başlık || "İlan"}
-                    </h3>
-
-
-                    <p class="kategori">
-
-                        📂 ${ilan.Kategori || "Diğer"}
-
-                    </p>
-
-
-                    <p>
-                        ${ilan.Açıklama || ""}
-                    </p>
-
-
-                    <strong class="fiyat">
-
-                        💰 ${ilan.fiyat} TL
-
-                    </strong>
-
-
-                    <a
-                        href="ilan-detay.html?id=${doc.id}"
-                        class="detay detay-ilan"
-                    >
-                        🔎 İlan Detayını Gör
-                    </a>
-
-
-                    <a
-                        href="tel:${telefon}"
-                        class="detay telefon"
-                    >
-                        📞 Telefonla Ara
-                    </a>
-
-
-                    <a
-                        href="${whatsappLink}"
-                        class="detay whatsapp"
-                        target="_blank"
-                    >
-                        💬 WhatsApp'tan Yaz
-                    </a>
-
-                </div>
-
-            `;
 
         });
 
+        ilanlariGoster(tumIlanlar);
 
-        if(
-            ilanListesi.innerHTML === ""
-        ){
-
-            ilanListesi.innerHTML =
-                "<p>Henüz yayınlanabilir ilan bulunmuyor.</p>";
-
-        }
-
-
-        kategoriFiltrele();
-
-    }
-    catch(hata){
+    }catch(hata){
 
         console.error(hata);
 
-        ilanListesi.innerHTML =
-            "<p>İlanlar yüklenirken bir hata oluştu.</p>";
+        alan.innerHTML = `
+        <div class="yok">
+        İlanlar yüklenirken bir hata oluştu.
+        </div>
+        `;
 
     }
 
 }
 
 
-window.ilanAra = function(){
+function ilanlariGoster(ilanlar){
 
-    kategoriFiltrele();
+    const alan = document.getElementById("ilanlar");
 
-};
+    alan.innerHTML = "";
+
+    if(ilanlar.length === 0){
+
+        alan.innerHTML = `
+        <div class="yok">
+        📭 Aradığınız kriterlere uygun ilan bulunamadı.
+        </div>
+        `;
+
+        return;
+    }
 
 
-function kategoriFiltrele(){
+    ilanlar.forEach((ilan)=>{
+
+        const telefon = String(ilan.Telefon);
+
+        let whatsappNumara =
+            telefon.replace(/\D/g,"");
+
+
+        if(whatsappNumara.startsWith("0")){
+
+            whatsappNumara =
+                "90" + whatsappNumara.substring(1);
+
+        }else if(!whatsappNumara.startsWith("90")){
+
+            whatsappNumara =
+                "90" + whatsappNumara;
+
+        }
+
+
+        const mesaj =
+            `Merhaba, ASLAN TRADE üzerindeki "${ilan.Başlık}" ilanınız hakkında bilgi almak istiyorum.`;
+
+        const whatsappLink =
+            `https://wa.me/${whatsappNumara}?text=${encodeURIComponent(mesaj)}`;
+
+
+        alan.innerHTML += `
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <h3>
+                ${ilan.Başlık}
+                </h3>
+
+                <span class="kategori">
+                ${ilan.Kategori || "Diğer"}
+                </span>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <div class="aciklama">
+
+                ${ilan.Açıklama || "Açıklama bulunmuyor."}
+
+                </div>
+
+
+                <div class="fiyat">
+
+                ${ilan.fiyat} TL
+
+                </div>
+
+
+                <div class="butonlar">
+
+                    <a
+                    class="buton detay"
+                    href="ilan-detay.html?id=${ilan.id}">
+                    🔎 Detay
+                    </a>
+
+
+                    <a
+                    class="buton telefon"
+                    href="tel:${telefon}">
+                    📞 Ara
+                    </a>
+
+                </div>
+
+
+                <a
+                class="buton whatsapp"
+                target="_blank"
+                href="${whatsappLink}">
+                💬 WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+window.ilanlariFiltrele = function(){
 
     const arama =
         document
@@ -496,65 +483,40 @@ function kategoriFiltrele(){
         .value;
 
 
-    const ilanlar =
-        document.querySelectorAll(
-            ".ilan"
-        );
+    const filtreli =
+        tumIlanlar.filter((ilan)=>{
+
+            const baslik =
+                String(ilan.Başlık || "")
+                .toLowerCase();
+
+            const aciklama =
+                String(ilan.Açıklama || "")
+                .toLowerCase();
+
+            const kategoriUygun =
+                !kategori ||
+                ilan.Kategori === kategori;
 
 
-    ilanlar.forEach(function(ilan){
-
-        const metin =
-            ilan.innerText.toLowerCase();
-
-
-        const ilanKategori =
-            ilan.dataset.kategori;
+            const aramaUygun =
+                !arama ||
+                baslik.includes(arama) ||
+                aciklama.includes(arama);
 
 
-        const aramaUygun =
-            metin.includes(arama);
+            return kategoriUygun && aramaUygun;
+
+        });
 
 
-        const kategoriUygun =
-            kategori === "" ||
-            ilanKategori === kategori;
+    ilanlariGoster(filtreli);
 
-
-        if(
-            aramaUygun &&
-            kategoriUygun
-        ){
-
-            ilan.style.display =
-                "block";
-
-        }
-        else{
-
-            ilan.style.display =
-                "none";
-
-        }
-
-    });
-
-}
-
-
-document
-.getElementById("kategori")
-.addEventListener(
-    "change",
-    kategoriFiltrele
-);
+};
 
 
 const url =
-    new URLSearchParams(
-        window.location.search
-    );
-
+    new URLSearchParams(window.location.search);
 
 const urlKategori =
     url.get("kategori");
@@ -562,9 +524,8 @@ const urlKategori =
 
 if(urlKategori){
 
-    document
-    .getElementById("kategori")
-    .value = urlKategori;
+    document.getElementById("kategori").value =
+        urlKategori;
 
 }
 
@@ -573,7 +534,5 @@ ilanlariGetir();
 
 </script>
 
-
 </body>
-
 </html>
