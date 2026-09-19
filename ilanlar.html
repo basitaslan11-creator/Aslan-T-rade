@@ -241,6 +241,7 @@ async function ilanlariGetir(){
     const ilanListesi =
         document.getElementById("ilanListesi");
 
+
     ilanListesi.innerHTML =
         "<p>İlanlar yükleniyor...</p>";
 
@@ -271,11 +272,32 @@ async function ilanlariGetir(){
             const ilan = doc.data();
 
 
+            /*
+
+            Başlık, telefon veya fiyatı olmayan
+            eski/test ilanlarını gösterme.
+
+            */
+
+            if(
+                !ilan.Başlık ||
+                !ilan.Telefon ||
+                !ilan.fiyat
+            ){
+
+                return;
+
+            }
+
+
             const telefon =
                 ilan.Telefon || "";
 
+
             const whatsappNumara =
-                telefon.replace(/\D/g,"").replace(/^0/,"");
+                telefon
+                .replace(/\D/g,"")
+                .replace(/^0/,"");
 
 
             const mesaj =
@@ -308,7 +330,7 @@ async function ilanlariGetir(){
                     </p>
 
                     <strong class="fiyat">
-                        💰 ${ilan.fiyat || ""} TL
+                        💰 ${ilan.fiyat} TL
                     </strong>
 
                     <a
@@ -331,6 +353,14 @@ async function ilanlariGetir(){
             `;
 
         });
+
+
+        if(ilanListesi.innerHTML === ""){
+
+            ilanListesi.innerHTML =
+                "<p>Henüz yayınlanabilir ilan bulunmuyor.</p>";
+
+        }
 
 
     }catch(hata){
