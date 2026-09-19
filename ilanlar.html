@@ -65,11 +65,19 @@ h2{
 }
 
 .search input{
-    width:70%;
+    width:55%;
     padding:12px;
     border:1px solid #ccc;
     border-radius:6px;
     font-size:16px;
+}
+
+.search select{
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:16px;
+    margin-left:5px;
 }
 
 .search button{
@@ -79,6 +87,7 @@ h2{
     border:none;
     border-radius:6px;
     cursor:pointer;
+    margin-left:5px;
 }
 
 .ilanlar{
@@ -140,6 +149,30 @@ footer{
     padding:20px;
 }
 
+@media(max-width:600px){
+
+    .search input{
+        width:100%;
+        margin-bottom:10px;
+    }
+
+    .search select{
+        width:100%;
+        margin:0 0 10px 0;
+    }
+
+    .search button{
+        width:100%;
+        margin:0;
+    }
+
+    nav a{
+        display:inline-block;
+        margin:5px;
+    }
+
+}
+
 </style>
 
 </head>
@@ -183,6 +216,22 @@ type="text"
 id="arama"
 placeholder="İlan ara..."
 >
+
+
+<select id="kategori">
+
+<option value="">Tüm Kategoriler</option>
+
+<option value="Araç">🚗 Araç</option>
+
+<option value="İş Makinesi">🚜 İş Makinesi</option>
+
+<option value="Gayrimenkul">🏠 Gayrimenkul</option>
+
+<option value="Diğer">🔧 Diğer</option>
+
+</select>
+
 
 <button onclick="ilanAra()">
 Ara
@@ -339,22 +388,33 @@ async function ilanlariGetir(){
 
             ilanListesi.innerHTML += `
 
-                <div class="ilan">
+                <div
+                    class="ilan"
+                    data-kategori="${ilan.Kategori || "Diğer"}"
+                >
 
                     <h3>
                         ${ilan.Başlık || "İlan"}
                     </h3>
 
+
                     <p class="kategori">
-                        📂 ${ilan.Kategori || "Diğer"}
+
+                        📂
+                        ${ilan.Kategori || "Diğer"}
+
                     </p>
+
 
                     <p>
                         ${ilan.Açıklama || ""}
                     </p>
 
+
                     <strong class="fiyat">
+
                         💰 ${ilan.fiyat} TL
+
                     </strong>
 
 
@@ -421,6 +481,12 @@ window.ilanAra = function(){
         .trim();
 
 
+    const kategori =
+        document
+        .getElementById("kategori")
+        .value;
+
+
     const ilanlar =
         document.querySelectorAll(
             ".ilan"
@@ -433,8 +499,22 @@ window.ilanAra = function(){
             ilan.innerText.toLowerCase();
 
 
+        const ilanKategori =
+            ilan.dataset.kategori;
+
+
+        const aramaUygun =
+            metin.includes(arama);
+
+
+        const kategoriUygun =
+            kategori === "" ||
+            ilanKategori === kategori;
+
+
         if(
-            metin.includes(arama)
+            aramaUygun &&
+            kategoriUygun
         ){
 
             ilan.style.display =
