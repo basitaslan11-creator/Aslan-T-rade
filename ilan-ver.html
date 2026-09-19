@@ -1,60 +1,71 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>İlan Ver | ASLAN TRADE</title>
+<title>İlan Ver - ASLAN TRADE</title>
 
 <style>
+*{
+    box-sizing:border-box;
+}
 
 body{
     margin:0;
     font-family:Arial,sans-serif;
-    background:#f4f4f4;
+    background:#f3f4f6;
+    color:#222;
 }
 
 header{
     background:#111827;
     color:white;
-    padding:20px;
+    padding:18px;
     text-align:center;
 }
 
 header h1{
-    margin:0;
-    font-size:28px;
+    margin:0 0 15px;
 }
 
 nav{
-    margin-top:15px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
 }
 
 nav a{
     color:white;
     text-decoration:none;
-    margin:0 8px;
-    font-size:15px;
+    background:#1f2937;
+    padding:9px 12px;
+    border-radius:6px;
 }
 
 .container{
-    max-width:600px;
+    max-width:700px;
     margin:30px auto;
+    padding:0 15px;
+}
+
+.form-box{
     background:white;
     padding:25px;
     border-radius:12px;
-    box-shadow:0 3px 12px rgba(0,0,0,0.1);
+    box-shadow:0 3px 12px rgba(0,0,0,.10);
 }
 
-h2{
+.form-box h2{
     text-align:center;
-    color:#111827;
+    margin-top:0;
 }
 
 label{
     display:block;
     margin-top:15px;
+    margin-bottom:6px;
     font-weight:bold;
 }
 
@@ -62,33 +73,44 @@ input,
 select,
 textarea{
     width:100%;
-    padding:12px;
-    margin-top:7px;
-    border:1px solid #ccc;
+    padding:13px;
+    border:1px solid #ddd;
     border-radius:7px;
-    box-sizing:border-box;
-    font-size:15px;
+    font-size:16px;
 }
 
 textarea{
-    height:120px;
-    resize:none;
+    min-height:130px;
+    resize:vertical;
+}
+
+.foto-bilgi{
+    margin-top:8px;
+    color:#666;
+    font-size:13px;
 }
 
 button{
     width:100%;
-    margin-top:20px;
+    margin-top:22px;
     padding:14px;
-    background:#16a34a;
-    color:white;
-    border:none;
+    border:0;
     border-radius:7px;
+    background:#f59e0b;
+    color:#111;
     font-size:17px;
+    font-weight:bold;
     cursor:pointer;
 }
 
 button:hover{
-    background:#15803d;
+    background:#d97706;
+}
+
+#sonuc{
+    margin-top:15px;
+    text-align:center;
+    font-weight:bold;
 }
 
 footer{
@@ -98,7 +120,6 @@ footer{
     text-align:center;
     padding:20px;
 }
-
 </style>
 </head>
 
@@ -111,9 +132,9 @@ footer{
 <nav>
 <a href="index.html">Ana Sayfa</a>
 <a href="ilanlar.html">İlanlar</a>
+<a href="ilan-ver.html">📢 İlan Ver</a>
 <a href="hizmetler.html">Hizmetler</a>
-<a href="#">Hakkımızda</a>
-<a href="#">İletişim</a>
+<a href="ustaol.html">Usta Ol</a>
 </nav>
 
 </header>
@@ -121,64 +142,119 @@ footer{
 
 <div class="container">
 
+<div class="form-box">
+
 <h2>📢 İlan Ver</h2>
 
-<label>Adınız Soyadınız</label>
-<input type="text" id="ad" placeholder="Adınız ve soyadınız">
+<form id="ilanForm">
+
+<label>Adınız</label>
+
+<input
+type="text"
+id="ad"
+placeholder="Adınız ve soyadınız"
+required
+>
+
 
 <label>Telefon Numaranız</label>
-<input type="tel" id="telefon" placeholder="05XXXXXXXXX">
+
+<input
+type="tel"
+id="telefon"
+placeholder="053XXXXXXXX"
+required
+>
+
 
 <label>İlan Başlığı</label>
-<input type="text" id="baslik" placeholder="Örn: 2015 Ford Transit">
+
+<input
+type="text"
+id="baslik"
+placeholder="Örn: 2015 Ford Transit"
+required
+>
+
 
 <label>Kategori</label>
 
-<select id="kategori">
+<select id="kategori" required>
 
-<option value="">Kategori Seçin</option>
-<option value="Araç">Araç</option>
-<option value="İş Makinesi">İş Makinesi</option>
-<option value="Gayrimenkul">Gayrimenkul</option>
-<option value="Diğer">Diğer</option>
+<option value="">Kategori seçin</option>
+<option value="Araç">🚗 Araç</option>
+<option value="İş Makinesi">🚜 İş Makinesi</option>
+<option value="Gayrimenkul">🏠 Gayrimenkul</option>
+<option value="Diğer">📦 Diğer</option>
 
 </select>
 
 
 <label>Fiyat</label>
-<input type="text" id="fiyat" placeholder="Örn: 600000 TL">
+
+<input
+type="number"
+id="fiyat"
+placeholder="Örn: 600000"
+required
+>
 
 
-<label>İlan Açıklaması</label>
+<label>Açıklama</label>
 
-<textarea id="aciklama" placeholder="İlanınız hakkında bilgi yazın..."></textarea>
+<textarea
+id="aciklama"
+placeholder="İlanınız hakkında bilgi yazın..."
+required
+></textarea>
 
 
-<button onclick="ilanGonder()">
-📱 İlanı Gönder
+<label>📷 İlan Fotoğrafı</label>
+
+<input
+type="file"
+id="foto"
+accept="image/*"
+>
+
+<div class="foto-bilgi">
+Fotoğraf seçebilirsiniz. Fotoğraf şu an sadece bu cihazda seçilir; henüz internete yüklenmez.
+</div>
+
+
+<button type="submit">
+📢 İlanı Yayınla
 </button>
+
+</form>
+
+<div id="sonuc"></div>
+
+</div>
 
 </div>
 
 
 <footer>
 
-© 2026 ASLAN TRADE - Tüm Hakları Saklıdır.
+© 2026 ASLAN TRADE
 
 </footer>
 
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
     getFirestore,
     collection,
     addDoc
 }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 const firebaseConfig = {
@@ -205,36 +281,43 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 
-window.ilanGonder = async function(){
+document
+.getElementById("ilanForm")
+.addEventListener("submit", async function(e){
 
-    let ad = document.getElementById("ad").value.trim();
+    e.preventDefault();
 
-    let telefon =
+
+    const ad =
+        document.getElementById("ad").value.trim();
+
+    const telefon =
         document.getElementById("telefon").value.trim();
 
-    let baslik =
+    const baslik =
         document.getElementById("baslik").value.trim();
 
-    let kategori =
+    const kategori =
         document.getElementById("kategori").value;
 
-    let fiyat =
+    const fiyat =
         document.getElementById("fiyat").value.trim();
 
-    let aciklama =
+    const aciklama =
         document.getElementById("aciklama").value.trim();
 
 
     if(
-        ad === "" ||
-        telefon === "" ||
-        baslik === "" ||
-        kategori === "" ||
-        fiyat === "" ||
-        aciklama === ""
+        !ad ||
+        !telefon ||
+        !baslik ||
+        !kategori ||
+        !fiyat ||
+        !aciklama
     ){
 
-        alert("Lütfen bütün alanları doldurun.");
+        document.getElementById("sonuc").innerHTML =
+        "⚠️ Lütfen tüm alanları doldurun.";
 
         return;
     }
@@ -243,83 +326,113 @@ window.ilanGonder = async function(){
     try{
 
         await addDoc(
-            collection(db, "ilanlar"),
+            collection(db,"ilanlar"),
             {
 
-                Ad: ad,
+                Ad:ad,
 
-                Telefon: telefon,
+                Telefon:telefon,
 
-                Başlık: baslik,
+                Başlık:baslik,
 
-                Kategori: kategori,
+                Kategori:kategori,
 
-                fiyat: fiyat,
+                fiyat:fiyat,
 
-                Açıklama: aciklama,
+                Açıklama:aciklama,
 
-                Tarih: new Date().toLocaleString("tr-TR")
+                Tarih:new Date()
+                .toLocaleString("tr-TR")
 
             }
         );
 
 
-        let mesaj =
-        "🦁 ASLAN TRADE İLAN BAŞVURUSU\n\n" +
-        "👤 Ad Soyad: " + ad + "\n" +
-        "📞 Telefon: " + telefon + "\n" +
-        "📌 İlan Başlığı: " + baslik + "\n" +
-        "📂 Kategori: " + kategori + "\n" +
-        "💰 Fiyat: " + fiyat + "\n" +
-        "📝 Açıklama: " + aciklama;
+        let whatsappNumara =
+            telefon.replace(/\D/g,"");
 
 
-        let numara = "905396305613";
+        if(whatsappNumara.startsWith("0")){
+
+            whatsappNumara =
+                "90" +
+                whatsappNumara.substring(1);
+
+        }else if(
+            !whatsappNumara.startsWith("90")
+        ){
+
+            whatsappNumara =
+                "90" +
+                whatsappNumara;
+
+        }
 
 
-        let url =
-        "https://wa.me/" +
-        numara +
-        "?text=" +
-        encodeURIComponent(mesaj);
+        const mesaj =
+`Merhaba, ASLAN TRADE'ye yeni bir ilan verildi.
+
+İlan: ${baslik}
+Kategori: ${kategori}
+Fiyat: ${fiyat} TL
+Açıklama: ${aciklama}
+Telefon: ${telefon}`;
 
 
-        alert(
-            "İlanınız başarıyla kaydedildi. WhatsApp açılıyor."
-        );
+        const whatsappLink =
+        `https://wa.me/905396305613?text=${encodeURIComponent(mesaj)}`;
 
 
-        window.open(url, "_blank");
+        document.getElementById("sonuc").innerHTML =
+        `
+        <div style="
+        background:#dcfce7;
+        color:#166534;
+        padding:15px;
+        border-radius:8px;
+        ">
+
+        ✅ İlan başarıyla yayınlandı.
+
+        <br><br>
+
+        <a
+        href="${whatsappLink}"
+        target="_blank"
+        style="
+        display:inline-block;
+        background:#25D366;
+        color:white;
+        padding:12px 18px;
+        border-radius:7px;
+        text-decoration:none;
+        font-weight:bold;
+        "
+        >
+        💬 WhatsApp'a Gönder
+        </a>
+
+        </div>
+        `;
 
 
-        document.getElementById("ad").value = "";
-
-        document.getElementById("telefon").value = "";
-
-        document.getElementById("baslik").value = "";
-
-        document.getElementById("kategori").value = "";
-
-        document.getElementById("fiyat").value = "";
-
-        document.getElementById("aciklama").value = "";
+        document
+        .getElementById("ilanForm")
+        .reset();
 
 
     }catch(hata){
 
         console.error(hata);
 
-        alert(
-            "İlan kaydedilirken bir hata oluştu. " +
-            "Lütfen tekrar deneyin."
-        );
+        document.getElementById("sonuc").innerHTML =
+        "❌ İlan kaydedilirken bir hata oluştu.";
 
     }
 
-}
+});
 
 </script>
 
 </body>
 </html>
-```
