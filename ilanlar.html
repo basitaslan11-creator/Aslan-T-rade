@@ -38,10 +38,6 @@ nav a{
     font-weight:bold;
 }
 
-nav a:hover{
-    color:#60a5fa;
-}
-
 .container{
     max-width:1100px;
     margin:30px auto;
@@ -58,8 +54,8 @@ h2{
     padding:20px;
     border-radius:10px;
     margin-bottom:30px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
     text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
 
 .search input{
@@ -76,7 +72,6 @@ h2{
     color:white;
     border:none;
     border-radius:6px;
-    cursor:pointer;
 }
 
 .ilanlar{
@@ -115,6 +110,7 @@ h2{
     border-radius:6px;
     text-decoration:none;
     text-align:center;
+    background:#111827;
 }
 
 .telefon{
@@ -188,7 +184,6 @@ Ara
 
 </div>
 
-
 </div>
 
 
@@ -241,10 +236,8 @@ async function ilanlariGetir(){
     const ilanListesi =
         document.getElementById("ilanListesi");
 
-
     ilanListesi.innerHTML =
         "<p>İlanlar yükleniyor...</p>";
-
 
     try{
 
@@ -253,58 +246,32 @@ async function ilanlariGetir(){
                 collection(db,"ilanlar")
             );
 
-
         ilanListesi.innerHTML = "";
-
-
-        if(snapshot.empty){
-
-            ilanListesi.innerHTML =
-                "<p>Henüz ilan bulunmuyor.</p>";
-
-            return;
-
-        }
-
 
         snapshot.forEach(function(doc){
 
             const ilan = doc.data();
-
-
-            /*
-
-            Başlık, telefon veya fiyatı olmayan
-            eski/test ilanlarını gösterme.
-
-            */
 
             if(
                 !ilan.Başlık ||
                 !ilan.Telefon ||
                 !ilan.fiyat
             ){
-
                 return;
-
             }
-
 
             const telefon =
                 ilan.Telefon || "";
-
 
             const whatsappNumara =
                 telefon
                 .replace(/\D/g,"")
                 .replace(/^0/,"");
 
-
             const mesaj =
                 "Merhaba, ASLAN TRADE üzerindeki " +
                 (ilan.Başlık || "ilan") +
                 " hakkında bilgi almak istiyorum.";
-
 
             const whatsappLink =
                 "https://wa.me/9" +
@@ -318,7 +285,7 @@ async function ilanlariGetir(){
                 <div class="ilan">
 
                     <h3>
-                        ${ilan.Başlık || "İlan"}
+                        ${ilan.Başlık}
                     </h3>
 
                     <p class="kategori">
@@ -354,14 +321,12 @@ async function ilanlariGetir(){
 
         });
 
-
         if(ilanListesi.innerHTML === ""){
 
             ilanListesi.innerHTML =
                 "<p>Henüz yayınlanabilir ilan bulunmuyor.</p>";
 
         }
-
 
     }catch(hata){
 
@@ -384,16 +349,13 @@ window.ilanAra = function(){
         .toLowerCase()
         .trim();
 
-
     const ilanlar =
         document.querySelectorAll(".ilan");
-
 
     ilanlar.forEach(function(ilan){
 
         const metin =
             ilan.innerText.toLowerCase();
-
 
         if(metin.includes(arama)){
 
@@ -413,7 +375,6 @@ window.ilanAra = function(){
 ilanlariGetir();
 
 </script>
-
 
 </body>
 </html>
