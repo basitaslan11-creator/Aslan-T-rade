@@ -400,8 +400,7 @@ async function ilanlariGetir(){
 
                     <p class="kategori">
 
-                        📂
-                        ${ilan.Kategori || "Diğer"}
+                        📂 ${ilan.Kategori || "Diğer"}
 
                     </p>
 
@@ -458,6 +457,9 @@ async function ilanlariGetir(){
 
         }
 
+
+        kategoriFiltrele();
+
     }
     catch(hata){
 
@@ -472,6 +474,13 @@ async function ilanlariGetir(){
 
 
 window.ilanAra = function(){
+
+    kategoriFiltrele();
+
+};
+
+
+function kategoriFiltrele(){
 
     const arama =
         document
@@ -530,7 +539,34 @@ window.ilanAra = function(){
 
     });
 
-};
+}
+
+
+document
+.getElementById("kategori")
+.addEventListener(
+    "change",
+    kategoriFiltrele
+);
+
+
+const url =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const urlKategori =
+    url.get("kategori");
+
+
+if(urlKategori){
+
+    document
+    .getElementById("kategori")
+    .value = urlKategori;
+
+}
 
 
 ilanlariGetir();
