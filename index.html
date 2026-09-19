@@ -428,25 +428,32 @@ async function ilanlariGetir(){
             const ilan = doc.data();
 
 
-            ilanlar.innerHTML += `
+    ilanlar.innerHTML += `
+    <div class="ilan-karti">
+        <h3>${ilan.Başlık || "İlan"}</h3>
 
-                <div class="ilan-karti">
+        <p>${ilan.Açıklama || ""}</p>
 
-                    <h3>
-                        ${ilan.Başlık || "İlan"}
-                    </h3>
+        <strong class="fiyat">
+            ${ilan.fiyat || ""} TL
+        </strong>
 
-                    <p>
-                        ${ilan.Açıklama || ""}
-                    </p>
+        <p>
+            📞 ${ilan.Telefon || ""}
+        </p>
 
-                    <strong class="fiyat">
-                        ${ilan.fiyat || ""} TL
-                    </strong>
+        <a href="tel:${ilan.Telefon || ""}"
+           style="display:block; background:#2563eb; color:white; text-align:center; padding:10px; margin-top:10px; border-radius:7px; text-decoration:none;">
+           📞 Telefonla Ara
+        </a>
 
-                </div>
-
-            `;
+        <a href="https://wa.me/9${(ilan.Telefon || "").replace(/^0/,"")}"
+           target="_blank"
+           style="display:block; background:#16a34a; color:white; text-align:center; padding:10px; margin-top:8px; border-radius:7px; text-decoration:none;">
+           💬 WhatsApp'tan Yaz
+        </a>
+    </div>
+`;
 
         });
 
